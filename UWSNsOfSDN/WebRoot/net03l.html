@@ -1,0 +1,89 @@
+
+<html>
+  <head>
+    <title>vis.js</title>
+    <script type="text/javascript" src="vis/dist/vis.js"></script>
+    <script src="jquery-3.3.1.min.js"></script>
+    <link href="vis/dist/vis.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+      #mynetwork {
+        width: 600px;
+        height: 400px;
+        border: 1px solid lightgray;
+      }
+    </style>
+   	<script type="text/javascript">
+   		function cli(){
+   		    var nodearr = network.getSelectedNodes();
+   		    alert(nodearr);
+   			//for(var i = 1;i <= nodearr.length;i ++){
+   			//	var node = nodearr.get(i);
+   			//	alert(node.id);
+   			//}
+   			
+   		}
+   	</script>
+  </head>
+  <body>
+  <div id="mynetwork"></div>
+
+  <script type="text/javascript">
+      // 创建节点数组
+      var str = "hello";
+      var nodes = new vis.DataSet([
+          {id: 1, label: 'Node 1',x:1,y:2},
+          {id: 2, label: 'Node 2',x:200,y:0},
+          {id: 3, label: 'Node 3',x:100,y:50},
+          {id: 4, label: 'Node 4',x:50,y:50},
+          {id: 5, label: 'Node 5',x:200,y:100}
+      ]);
+
+      // 创建关系数组
+      var edges = new vis.DataSet([
+          {from: 1, to: 3},
+          {from: 1, to: 2},
+          {from: 2, to: 4},
+          {from: 2, to: 5}
+      ]);
+
+      // 创建一个网络
+      var container = document.getElementById('mynetwork');
+
+      // vis数据
+      var data = {
+          nodes: nodes,
+          edges: edges
+      };
+      var options = {
+      		edges:{
+            arrows: {
+                to: {enabled: true, scaleFactor: 1, type: 'circle'},
+            },
+            arrowStrikethrough: false,
+            chosen:{
+                edge: function(values, id, selected, hovering){
+                    values.toArrowType = 'arrow';
+                },
+
+            }
+        },
+        nodes:{
+        	chosen:{
+        		node: function(values, id, selected, hovering){
+        			//alert(values.shadowX);
+        		},
+        	}
+        }	
+	};
+      // 初始化网络
+      var network = new vis.Network(container, data, options);
+       network.on("selectNode", function (params) {
+       if (params.nodes.length != 0) {//确定为节点双击事件
+       		//alert(params.nodes[0].x);
+       }  
+    });
+    
+  </script>
+  <button onclick="cli()">dianji</button>
+  </body>
+</html>

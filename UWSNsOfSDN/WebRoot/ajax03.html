@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ajax03.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+		<script src="jquery-3.3.1.min.js"></script>
+	<script type="text/javascript">
+		function cli(){
+	
+			$.get("Servlet4ajax01",{ nodeid: "001", noderam: "500m" }, function(data){
+  				alert("Data Loaded: " + data);
+			});
+			//$(t1).load("ajaxtxt.txt");
+		}
+	</script>
+  </head>
+  
+  <body>
+    <h1 id="t1"> hahaha</h1>
+    <button onclick="cli()">dianji</button>
+  </body>
+</html>
